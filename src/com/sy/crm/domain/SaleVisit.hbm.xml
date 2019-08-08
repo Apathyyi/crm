@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping SYSTEM "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+    <class name="com.sy.crm.domain.SaleVisit" table="t_visit">
+        <id name="visit_id" column="visit_id">
+            <generator class="native"></generator>
+        </id>
+		<property name="visit_time" column="visit_time"></property>
+		<property name="visit_addr" column="visit_addr"></property>
+		<property name="visit_detail" column="visit_detail"></property>
+		<property name="visit_nexttime" column="visit_nexttime"></property>
+<!-- 客户的关系 -->
+		<many-to-one lazy="false" name="customer" class="com.sy.crm.domain.Customer" column="visit_cust_id"></many-to-one>
+<!-- 用户的关系 -->
+		<many-to-one lazy="false" name="user" class="com.sy.crm.domain.User" column="visit_user_id"></many-to-one>
+    </class>
+</hibernate-mapping>

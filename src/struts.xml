@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+    <constant name="struts.devMode" value="true" />
+	<constant name="struts.action.extension" value="action"/>
+<!-- 设置文件上传总大小 -->
+	<constant name="struts.multipart.maxSize" value="5242880"></constant>
+<!-- 使用通配符 -->
+	<package name="crmbysy" extends="struts-default" namespace="/">
+	    <interceptors>
+	        <interceptor name="privilegeInterceptor" class="com.sy.crm.web.interceptor.PrivilegeInterceptor"/>   
+	    </interceptors>
+	    <global-results>
+	        <result name="login">/login.jsp</result>
+	    </global-results>
+	    <global-allowed-methods>regex:.*</global-allowed-methods>
+ <!-- 用户操作的action -->
+	    <action name="user_*" class="userAction" method="{1}">
+	        <result name="registe">/regist.jsp</result>
+	        <result name="login">/login.jsp</result>
+	        <result name="success" type="redirect">/index.jsp</result>
+	        <result name ="findAll">/jsp/user/list.jsp</result>
+	        <result name ="editSuccess">jsp/user/edit.jsp</result>
+	        <result name ="updateSuccess" type="redirect">user_findAll.action</result>
+	        <result name ="deleteSuccess" type="redirect">user_findAll.action</result>
+	        <interceptor-ref name="privilegeInterceptor">
+	            <param name="excludeMethods">registe,login</param>       
+	        </interceptor-ref>
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+	    </action>
+<!-- 客户操作的action -->
+		<action name="customer_*" class="customerAction" method="{1}">
+		    <interceptor-ref name="privilegeInterceptor"></interceptor-ref>
+		    <interceptor-ref name="defaultStack"></interceptor-ref>
+	        <result name="saveUI">/jsp/customer/add.jsp</result>
+	        <result name ="findAll">/jsp/customer/list.jsp</result>
+	        <result name ="editSuccess">/jsp/customer/edit.jsp</result>
+	        <result name ="saveSuccess" type="redirect">customer_findAll.action</result>
+	        <result name ="updateSuccess" type="redirect">customer_findAll.action</result>
+	        <result name ="deleteSuccess" type="redirect">customer_findAll.action</result>
+	        <result name="input">/jsp/customer/add.jsp</result>
+	         <result name="searchUI" type="redirect">customer_findAll.action</result>
+<!-- 设置上传大小的拦截器 -->   
+	        <interceptor-ref name="defaultStack">
+	            <param name="fileUpload.maximumSize">2097152</param>
+	            <param name="fileUpload.allowedExtensions">.jpg,.png</param>
+	        </interceptor-ref>
+	    </action>
+<!-- 字典操作的action -->
+	    <action name="baseDict_*" class="baseDictAction" method="{1}">
+	        <result name="findAll">/jsp/basedict/list.jsp</result>
+	        <result name="editSuccess">jsp/basedict/edit.jsp</result>
+	        <result name="updateSuccess" type="redirect">baseDict_findAll.action</result>
+	        <result name="deleteSuccess" type="redirect">baseDict_findAll.action</result>
+	        <interceptor-ref name="privilegeInterceptor"></interceptor-ref>
+		    <interceptor-ref name="defaultStack"></interceptor-ref>
+	    </action>
+<!-- 配置linkMan的action -->
+		<action name="linkMan_*" class="linkManAction" method="{1}">
+		    <interceptor-ref name="privilegeInterceptor"></interceptor-ref>
+		     <interceptor-ref name="defaultStack"></interceptor-ref>
+		    <result name="findAll">/jsp/linkman/list.jsp</result>
+		    <result name="add">/jsp/linkman/add.jsp</result>
+		    <result name="edit">/jsp/linkman/edit.jsp</result>
+		    <result name="deleteSuccess" type="redirect">linkMan_findAll.action</result>
+		    <result name="saveSuccess" type="redirect">linkMan_findAll.action</result>
+		    <result name="updateSuccess" type="redirect">linkMan_findAll.action</result>
+		     <result name="searchUI" type="redirect">linkMan_findAll.action</result>
+		</action>
+<!-- 配置SaleVisit的action -->
+		<action name="saleVisit_*" class="saleVisitAction" method="{1}">
+		    <interceptor-ref name="privilegeInterceptor"></interceptor-ref>
+		     <interceptor-ref name="defaultStack"></interceptor-ref>
+		    <result name="findAll">/jsp/saleVisit/list.jsp</result>
+		    <result name="saveUI">/jsp/saleVisit/add.jsp</result>
+		    <result name="editSuccess">/jsp/saleVisit/edit.jsp</result>
+		    <result name="updateSuccess" type="redirect">saleVisit_findAll.action</result>
+		    <result name="deleteSuccess" type="redirect">saleVisit_findAll.action</result>
+		    <result name="saveSuccess" type="redirect">saleVisit_findAll.action</result>
+		    <result name="searchUI" type="redirect">saleVisit_findAll.action</result>
+		</action>
+	</package>
+	<!--
+	<package name="crmbysy" extends="struts-default" namespace="/">
+	    <action name="user_registe*" class="userAction" method="registe">
+	        <result name="registe">/regist.jsp</result>
+	        <result name="login">/login.jsp</result>
+	        <result name="success">/index.jsp</result>
+	    </action>
+	    <action name="user_login*" class="userAction" method="login">
+	        <result name="login">/login.jsp</result>
+	        <result name="success">/index.jsp</result>
+	    </action>
+	    <action name="customer_saveUI" class="customerAction" method="saveUI">
+	        <result name="saveUI">/jsp/customer/add.jsp</result>
+	    </action>
+	</package>
+	 -->
+</struts>

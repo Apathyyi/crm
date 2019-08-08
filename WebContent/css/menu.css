@@ -1,0 +1,67 @@
+BODY {
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 0px;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px;
+	PADDING-TOP: 0px;
+	BACKGROUND-COLOR: #2a8dc8
+}
+
+BODY {
+	FONT-SIZE: 11px;
+	COLOR: #003366;
+	FONT-FAMILY: Verdana
+}
+
+TD {
+	FONT-SIZE: 11px;
+	COLOR: #003366;
+	FONT-FAMILY: Verdana
+}
+
+DIV {
+	FONT-SIZE: 11px;
+	COLOR: #003366;
+	FONT-FAMILY: Verdana
+}
+
+P {
+	FONT-SIZE: 11px;
+	COLOR: #003366;
+	FONT-FAMILY: Verdana
+}
+
+.mainMenu {
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 14px;
+	cursor: pointer;
+	COLOR: #000000
+}
+
+A.style2:link {
+	PADDING-LEFT: 4px;
+	COLOR: #0055bb;
+	TEXT-DECORATION: none
+}
+
+A.style2:visited {
+	PADDING-LEFT: 4px;
+	COLOR: #0055bb;
+	TEXT-DECORATION: none
+}
+
+A.style2:hover {
+	PADDING-LEFT: 4px;
+	COLOR: #ff0000;
+	TEXT-DECORATION: none
+}
+
+A.active {
+	PADDING-LEFT: 4px;
+	COLOR: #ff0000;
+	TEXT-DECORATION: none
+}
+
+.span {
+	COLOR: #ff0000;
+}
